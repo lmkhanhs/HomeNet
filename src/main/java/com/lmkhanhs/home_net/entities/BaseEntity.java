@@ -17,7 +17,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public abstract class BaseEntity {
+public abstract class BaseEntity extends BaseTenantEntity {
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp

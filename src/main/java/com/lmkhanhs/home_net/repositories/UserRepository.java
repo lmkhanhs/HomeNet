@@ -12,4 +12,6 @@ import com.lmkhanhs.home_net.entities.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByUsername(String username);
     List<UserEntity> findAllByIsActiveTrue();
+    Optional<UserEntity> findByUsernameAndTenantId(String username, String tenantId);
+    boolean existsByUsernameAndTenantId(String username, String tenantId);
 }
