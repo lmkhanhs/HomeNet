@@ -1,9 +1,12 @@
 package com.lmkhanhs.home_net.dtos.tenants.requests;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Getter

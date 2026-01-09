@@ -1,5 +1,8 @@
 package com.lmkhanhs.home_net.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +11,6 @@ import com.lmkhanhs.home_net.dtos.apps.ApiResponse;
 import com.lmkhanhs.home_net.dtos.auth.requests.CreatePermissionRequest;
 import com.lmkhanhs.home_net.dtos.auth.requests.LoginRequest;
 import com.lmkhanhs.home_net.dtos.auth.requests.LogoutRequest;
-import com.lmkhanhs.home_net.dtos.auth.requests.RegisterRequest;
 import com.lmkhanhs.home_net.dtos.auth.responses.LoginResponse;
 import com.lmkhanhs.home_net.dtos.auth.responses.LogoutResponse;
 import com.lmkhanhs.home_net.dtos.auth.responses.PermissionResponse;
@@ -20,12 +22,6 @@ import com.lmkhanhs.home_net.utils.RequestHttpUitlls;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @RestController
 @RequiredArgsConstructor
