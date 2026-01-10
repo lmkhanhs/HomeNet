@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -25,6 +26,7 @@ public class SecurityConfig {
     @Value("${app.prefix}")
     private String PREFIX_API; // api/v1
 
+    private final TenantFilter tenantFilter;
     private final JwtDecodeCustomize jwtDecodeCustomize;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Bean
@@ -43,7 +45,7 @@ public class SecurityConfig {
                     )
                 );
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));
-
+        http.addFilterAfter(tenantFilter,BearerTokenAuthenticationFilter.class );
         return http.build();
     }
 

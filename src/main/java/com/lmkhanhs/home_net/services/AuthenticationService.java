@@ -136,7 +136,8 @@ public class AuthenticationService {
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
         JWTClaimsSet.Builder claims = new JWTClaimsSet.Builder()
-                .issuer(tenantId)
+                .issuer("lmkhanhs.com")
+                .claim("tenant-name", tenantId)
                 .subject(username)
                 .jwtID(UUID.randomUUID().toString())
                 .issueTime(now)

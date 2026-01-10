@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.lmkhanhs.home_net.context.TenantContext;
 import com.lmkhanhs.home_net.dtos.users.requests.CreateUserRequest;
 import com.lmkhanhs.home_net.dtos.users.responses.UserResponse;
 import com.lmkhanhs.home_net.entities.RoleEntity;
@@ -53,6 +54,7 @@ public class UserService {
                 .toList();
     }
     public UserResponse handleGetMyInfo(String tenantId) {
+       
         String username = this.authenticationUtills.getUserName();
         UserEntity user = this.userRepository.findByUsernameAndTenantId(username, tenantId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND, "User not found!"));
