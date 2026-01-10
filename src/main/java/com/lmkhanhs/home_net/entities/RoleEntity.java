@@ -17,10 +17,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
@@ -35,9 +36,10 @@ public class RoleEntity extends BaseEntity {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     Set<UserEntity> users;
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "role-permissions",
                joinColumns = @JoinColumn(name = "role_id"), 
                inverseJoinColumns = @JoinColumn(name = "permission_id"))
-    Set<PermissionEntity> permissions;
+    Set<PermissionEntity> permissions = new java.util.HashSet<>();
 }

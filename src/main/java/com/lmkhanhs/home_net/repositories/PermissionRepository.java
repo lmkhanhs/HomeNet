@@ -11,4 +11,5 @@ import com.lmkhanhs.home_net.entities.PermissionEntity;
 public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
     boolean existsByName(String name);
     Optional<PermissionEntity> findByName(String name);
+    Optional<PermissionEntity> findByNameAndTenantId(String name, String tenantId);
 }

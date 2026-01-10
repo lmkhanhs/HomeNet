@@ -11,21 +11,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.lmkhanhs.home_net.dtos.auth.requests.CreatePermissionRequest;
 import com.lmkhanhs.home_net.dtos.auth.requests.LoginRequest;
 import com.lmkhanhs.home_net.dtos.auth.requests.LogoutRequest;
 import com.lmkhanhs.home_net.dtos.auth.responses.LoginResponse;
 import com.lmkhanhs.home_net.dtos.auth.responses.LogoutResponse;
-import com.lmkhanhs.home_net.dtos.auth.responses.PermissionResponse;
 import com.lmkhanhs.home_net.dtos.users.requests.CreateUserRequest;
 import com.lmkhanhs.home_net.dtos.users.responses.UserResponse;
 import com.lmkhanhs.home_net.entities.PermissionEntity;
 import com.lmkhanhs.home_net.entities.RoleEntity;
-import com.lmkhanhs.home_net.entities.TenantEntity;
 import com.lmkhanhs.home_net.entities.UserEntity;
 import com.lmkhanhs.home_net.exceptions.AppException;
 import com.lmkhanhs.home_net.exceptions.ErrorCode;
-import com.lmkhanhs.home_net.mappers.AuthMapper;
 import com.lmkhanhs.home_net.mappers.UserMapper;
 import com.lmkhanhs.home_net.repositories.PermissionRepository;
 import com.lmkhanhs.home_net.repositories.RoleRepository;
@@ -51,7 +47,6 @@ public class AuthenticationService {
 
     final BaseRedisUtils baseRedisUtils;
     final PermissionRepository permissionRepository;
-    final AuthMapper authMapper;
     final UserRepository userRepository;
     final TenantRepository tenantRepository;
     final UserMapper userMapper;
@@ -69,18 +64,6 @@ public class AuthenticationService {
 
     private static final String TOKEN_PREFIX = "BLACKLIST:TOKEN:";
 
-    public PermissionResponse handleCreatePermission(String tenantId, CreatePermissionRequest request) {
-
-        permissionRepository.findByName(request.getName())
-                .ifPresent(p -> {
-                    throw new AppException(ErrorCode.PERMISSION_EXISTED);
-                });
-
-        PermissionEntity permission = authMapper.toEntity(request);
-        permission.setTenantId(tenantId);
-
-        return authMapper.toResponse(permissionRepository.save(permission));
-    }
 
     public UserResponse handRegister(String tenantId, CreateUserRequest request) {
 

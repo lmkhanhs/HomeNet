@@ -3,14 +3,16 @@ package com.lmkhanhs.home_net.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "permissions")
@@ -26,6 +28,7 @@ public class PermissionEntity extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     String description;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY)
-    Set<RoleEntity> roles;
+    Set<RoleEntity> roles = new HashSet<>();
 }

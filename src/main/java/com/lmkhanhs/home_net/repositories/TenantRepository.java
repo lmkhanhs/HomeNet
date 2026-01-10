@@ -11,5 +11,5 @@ import com.lmkhanhs.home_net.entities.TenantEntity;
 public interface TenantRepository extends JpaRepository<TenantEntity, String> {
     boolean existsByName(String name);
     Optional<TenantEntity> findByName(String name);
-    Optional<TenantEntity> findById(String id);
+
 }

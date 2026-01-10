@@ -10,6 +10,5 @@ import com.lmkhanhs.home_net.entities.TenantEntity;
 @Mapper(componentModel = "spring")
 public interface TenantMapper {
     TenantEntity toEntity(CreateTenantRequest request);
-    @Mapping(source = "id", target = "_id")
     TenantResponse toResponse(TenantEntity entity);
 }

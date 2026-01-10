@@ -32,6 +32,6 @@ public class RequestHttpUitlls {
     public  String getTenantIDValid(HttpServletRequest request) {
         TenantEntity tenant = this.tenantRepository.findByName(request.getHeader("X-Tenant-Name"))
             .orElseThrow(() -> new AppException(ErrorCode.TENANT_NOT_FOUND));
-        return tenant.getId();
+        return tenant.getName();
     }
 }

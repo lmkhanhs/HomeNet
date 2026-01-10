@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 @Setter
 @Getter
@@ -27,7 +28,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Entity
 @Table(name = "Users")
-@Builder
+@SuperBuilder
 public class UserEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,10 +47,11 @@ public class UserEntity extends BaseEntity {
     Boolean isActive;
     String avatarUrl;
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "user-roles",
                joinColumns = @JoinColumn(name = "user_id"), 
                inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<RoleEntity> roles;
+    Set<RoleEntity> roles = new java.util.HashSet<>();
 
 }

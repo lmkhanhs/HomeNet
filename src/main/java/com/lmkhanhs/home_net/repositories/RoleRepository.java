@@ -10,4 +10,6 @@ import com.lmkhanhs.home_net.entities.RoleEntity;
 @Repository
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
     Optional<RoleEntity> findByName(String name);
+    Optional<RoleEntity> findByNameAndTenantId(String name, String tenantId);
+    Optional<RoleEntity> findByIdAndTenantId(Long id, String tenantId);
 }

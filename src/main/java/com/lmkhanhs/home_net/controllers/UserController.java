@@ -19,8 +19,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
@@ -41,6 +39,12 @@ public class UserController {
     public ApiResponse<List<UserResponse>> getAllUsers() {
         return ApiResponse.<List<UserResponse>>builder()
                 .data(this.userService.handleGetAllUsers())
+                .build();
+    }
+    @GetMapping("/me")
+    public ApiResponse<UserResponse> getMyInfo(HttpServletRequest req) {
+        return ApiResponse.<UserResponse>builder()
+                .data(this.userService.handleGetMyInfo(this.requestHttpUitlls.getTenantIDValid(req)))
                 .build();
     }
     

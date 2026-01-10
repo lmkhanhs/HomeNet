@@ -1,5 +1,8 @@
 package com.lmkhanhs.home_net.dtos.users.responses;
 
+import java.util.List;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +22,7 @@ public class UserResponse {
     String address;
     String city;
     String ward;
-
     Boolean isActive;
     String avatarUrl;
+    Set<RoleResponse> roles;
 }

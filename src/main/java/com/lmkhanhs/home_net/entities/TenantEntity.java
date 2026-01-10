@@ -25,8 +25,6 @@ import lombok.experimental.FieldDefaults;
 @Table(name = "Tenants")
 public class TenantEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
     String name;
     String status;
     LocalDate fromDate;
