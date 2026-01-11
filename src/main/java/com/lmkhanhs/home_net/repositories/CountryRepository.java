@@ -11,5 +11,7 @@ import com.lmkhanhs.home_net.entities.CountryEntity;
 @Repository
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
     Optional<CountryEntity> findByNameAndTenantId(String name, String tenantId);
+    Optional<CountryEntity> findByIdAndTenantIdAndIsDeletedFalse(Long id, String tenantId);
+    Optional<CountryEntity> findByIdAndTenantIdAndIsDeletedTrue(Long id, String tenantId);
     Page<CountryEntity> findAllByTenantIdAndIsDeletedFalse(String tenantId, org.springframework.data.domain.Pageable pageable);
 }

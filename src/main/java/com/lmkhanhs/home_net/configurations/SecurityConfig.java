@@ -32,8 +32,9 @@ public class SecurityConfig {
     @PostConstruct
     void init() {
         PUBLIC_URLS = new String[] {
-                
-                PREFIX_API + "/countries"
+                PREFIX_API + "/countries",
+                PREFIX_API + "/countries/{countryId}",
+                PREFIX_API + "/categories"
         };
     }
 

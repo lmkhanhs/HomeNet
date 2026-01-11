@@ -16,6 +16,7 @@ public enum ErrorCode {
     INVALID_CREDENTIALS(1010, "invalid credentials", HttpStatus.UNAUTHORIZED),
     ROLE_NOT_FOUND(1011, "role not found", HttpStatus.SERVICE_UNAVAILABLE),
     COUNTRY_EXISTED(2000, "country existed", HttpStatus.BAD_REQUEST),
+    COUNTRY_NOT_FOUND(2001, "country not found", HttpStatus.BAD_REQUEST),
 
     AUTHENTICATION_EXCEPTION(1002, "authentication exception", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED_EXCEPTION(1003, "unauthorized exception {User don't have permission!}", HttpStatus.FORBIDDEN),

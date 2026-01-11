@@ -1,4 +1,6 @@
-package com.lmkhanhs.home_net.dtos.countries.responses;
+package com.lmkhanhs.home_net.dtos.countries.requests;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,15 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor  
 @AllArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class CountryResponse {
-    Long id;
+public class UpdateCountryRequest {
     String name;
-    String thumbnailUrl;
-    String description;
+    MultipartFile thumbnail;
     Integer position;
+    String description;
 }
