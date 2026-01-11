@@ -42,6 +42,7 @@ public class UserEntity extends BaseEntity {
     String address;
     String city;
     String ward;
+    
 
     LocalDateTime lastLogin;
     Boolean isActive;

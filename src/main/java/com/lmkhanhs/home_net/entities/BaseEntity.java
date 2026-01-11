@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,4 +29,6 @@ public abstract class BaseEntity extends BaseTenantEntity {
     LocalDateTime createdAt;
     @UpdateTimestamp
     LocalDateTime updatedAt;
+    @Builder.Default
+    Boolean isDeleted = Boolean.FALSE;
 }

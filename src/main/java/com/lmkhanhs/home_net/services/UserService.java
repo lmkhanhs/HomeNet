@@ -53,8 +53,7 @@ public class UserService {
                 .map(user -> this.userMapper.toResponse(user))
                 .toList();
     }
-    public UserResponse handleGetMyInfo(String tenantId) {
-       
+    public UserResponse handleGetMyInfo(String tenantId) {   
         String username = this.authenticationUtills.getUserName();
         UserEntity user = this.userRepository.findByUsernameAndTenantId(username, tenantId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND, "User not found!"));

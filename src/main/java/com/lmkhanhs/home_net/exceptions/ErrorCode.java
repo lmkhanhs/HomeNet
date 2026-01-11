@@ -1,8 +1,6 @@
 package com.lmkhanhs.home_net.exceptions;
 
-import org.apache.tomcat.util.http.parser.TE;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.method.P;
 
 import lombok.Getter;
 
@@ -17,6 +15,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(1008, "user not found", HttpStatus.BAD_REQUEST),
     INVALID_CREDENTIALS(1010, "invalid credentials", HttpStatus.UNAUTHORIZED),
     ROLE_NOT_FOUND(1011, "role not found", HttpStatus.SERVICE_UNAVAILABLE),
+    COUNTRY_EXISTED(2000, "country existed", HttpStatus.BAD_REQUEST),
 
     AUTHENTICATION_EXCEPTION(1002, "authentication exception", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED_EXCEPTION(1003, "unauthorized exception {User don't have permission!}", HttpStatus.FORBIDDEN),

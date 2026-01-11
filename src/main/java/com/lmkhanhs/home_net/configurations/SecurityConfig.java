@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -24,11 +25,22 @@ import lombok.RequiredArgsConstructor;
 @EnableMethodSecurity
 public class SecurityConfig {
     @Value("${app.prefix}")
-    private String PREFIX_API; // api/v1
+    private String PREFIX_API;
+
+    private String[] PUBLIC_URLS;
+
+    @PostConstruct
+    void init() {
+        PUBLIC_URLS = new String[] {
+                
+                PREFIX_API + "/countries"
+        };
+    }
 
     private final TenantFilter tenantFilter;
     private final JwtDecodeCustomize jwtDecodeCustomize;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -37,15 +49,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
                         .anyRequest().authenticated());
-        http    
-            .oauth2ResourceServer(oauth2 -> oauth2
-                    .jwt(jwt -> jwt.decoder(jwtDecodeCustomize)
-                            .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                    )
-                );
+        http
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt.decoder(jwtDecodeCustomize)
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())));
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));
-        http.addFilterAfter(tenantFilter,BearerTokenAuthenticationFilter.class );
+        http.addFilterAfter(tenantFilter, BearerTokenAuthenticationFilter.class);
         return http.build();
     }
 
@@ -61,7 +72,8 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-    @Bean 
+
+    @Bean
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
