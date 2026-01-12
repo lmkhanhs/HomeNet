@@ -3,6 +3,8 @@ package com.lmkhanhs.home_net.dtos.users.responses;
 import java.util.List;
 import java.util.Set;
 
+import com.lmkhanhs.home_net.dtos.countries.responses.CountryResponse;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +23,9 @@ public class UserResponse {
     String phoneNumber;
     String address;
     String city;
-    String ward;
+    String district;
     Boolean isActive;
     String avatarUrl;
+    CountryResponse country;
     Set<RoleResponse> roles;
 }

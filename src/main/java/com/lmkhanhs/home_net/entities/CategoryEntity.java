@@ -1,14 +1,10 @@
 package com.lmkhanhs.home_net.entities;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,21 +14,21 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
-@Getter
 @Setter
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "Countries")
-public class CountryEntity extends BaseEntity {
+@Table(name = "categories")
+@SuperBuilder
+public class CategoryEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
     String thumbnailUrl;
-    Integer position;
-    @Column(columnDefinition = "TEXT")
+    String name;
+    @Column(name = "description", columnDefinition = "TEXT")
     String description;
+    Integer position;
 }

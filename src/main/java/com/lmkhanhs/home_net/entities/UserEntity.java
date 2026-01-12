@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -41,15 +42,18 @@ public class UserEntity extends BaseEntity {
     String phoneNumber;
     String address;
     String city;
-    String ward;
+    String district;
     
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    CountryEntity country;
 
     LocalDateTime lastLogin;
     Boolean isActive;
     String avatarUrl;
 
     @Builder.Default
-    @ManyToMany
+    @ManyToMany(fetch = jakarta.persistence.FetchType.LAZY)
     @JoinTable(name = "user-roles",
                joinColumns = @JoinColumn(name = "user_id"), 
                inverseJoinColumns = @JoinColumn(name = "role_id"))

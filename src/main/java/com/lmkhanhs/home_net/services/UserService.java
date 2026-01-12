@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lmkhanhs.home_net.context.TenantContext;
 import com.lmkhanhs.home_net.dtos.users.requests.CreateUserRequest;
+import com.lmkhanhs.home_net.dtos.users.requests.UpdateProfileUser;
 import com.lmkhanhs.home_net.dtos.users.responses.UserResponse;
 import com.lmkhanhs.home_net.entities.RoleEntity;
 import com.lmkhanhs.home_net.entities.UserEntity;
@@ -57,6 +58,17 @@ public class UserService {
         String username = this.authenticationUtills.getUserName();
         UserEntity user = this.userRepository.findByUsernameAndTenantId(username, tenantId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND, "User not found!"));
+        return this.userMapper.toResponse(user);
+    }
+    // update profile
+    public UserResponse handleUpdateProfile(UpdateProfileUser dto) {
+        String username = this.authenticationUtills.getUserName();
+        String tenantId = TenantContext.getTenant();
+        
+        UserEntity user = this.userRepository.findByUsernameAndTenantId(username, tenantId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND, "User not found!"));
+        this.userMapper.updateProfileFromDto(dto, user);
+        this.userRepository.save(user);
         return this.userMapper.toResponse(user);
     }
 }
