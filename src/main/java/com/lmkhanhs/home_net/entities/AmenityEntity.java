@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,37 +14,22 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
-@Getter
 @Setter
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "Listings")
-public class ListingEntity extends BaseEntity {
+@SuperBuilder
+@Table(name = "Amenities")
+public class AmenityEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;   
-
+    Long id;
+    @Column(columnDefinition = "TEXT")
+    String iconUrl;
+    @Column(unique = true, nullable = false)
     String name;
-    String title;
-    String coverImageUrl;
     @Column(name = "description", columnDefinition = "TEXT")
     String description;
-    String address;
-    String city;
-    String district;
-    
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    CountryEntity country;
-
-    Double area; // in square meters
-    Double pricePerNight; // in VND
-    Boolean isPopular;
-    Boolean accessed;
-    Boolean accepted;
-
-    
 }

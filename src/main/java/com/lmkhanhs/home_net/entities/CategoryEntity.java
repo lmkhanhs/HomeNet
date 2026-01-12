@@ -26,7 +26,9 @@ public class CategoryEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String thumbnailUrl;
+    @Column(columnDefinition = "TEXT")
+    String iconUrl;
+    @Column(unique = true, nullable = false)
     String name;
     @Column(name = "description", columnDefinition = "TEXT")
     String description;

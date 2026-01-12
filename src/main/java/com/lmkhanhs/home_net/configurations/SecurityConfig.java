@@ -34,7 +34,8 @@ public class SecurityConfig {
         PUBLIC_URLS = new String[] {
                 PREFIX_API + "/countries",
                 PREFIX_API + "/countries/{countryId}",
-                PREFIX_API + "/categories"
+                PREFIX_API + "/categories",
+                PREFIX_API + "/categories/{categoryId}",
         };
     }
 
