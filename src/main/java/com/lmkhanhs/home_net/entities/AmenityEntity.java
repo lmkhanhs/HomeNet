@@ -32,4 +32,5 @@ public class AmenityEntity extends BaseEntity {
     String name;
     @Column(name = "description", columnDefinition = "TEXT")
     String description;
+    Integer position;
 }

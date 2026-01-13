@@ -19,6 +19,8 @@ public enum ErrorCode {
     COUNTRY_NOT_FOUND(2001, "country not found", HttpStatus.BAD_REQUEST),
     CATEGORY_EXISTED(3000, "category existed", HttpStatus.BAD_REQUEST),
     CATEGORY_NOT_FOUND(3001, "category not found", HttpStatus.BAD_REQUEST),
+    AMENITY_EXISTED(3002, "amenity existed", HttpStatus.BAD_REQUEST),
+    AMENITY_NOT_FOUND(3003, "amenity not found", HttpStatus.BAD_REQUEST),
 
     AUTHENTICATION_EXCEPTION(1002, "authentication exception", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED_EXCEPTION(1003, "unauthorized exception {User don't have permission!}", HttpStatus.FORBIDDEN),

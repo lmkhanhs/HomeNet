@@ -36,6 +36,8 @@ public class SecurityConfig {
                 PREFIX_API + "/countries/{countryId}",
                 PREFIX_API + "/categories",
                 PREFIX_API + "/categories/{categoryId}",
+                PREFIX_API + "/amenities",
+                PREFIX_API + "/amenities/{amenityId}"
         };
     }
 
